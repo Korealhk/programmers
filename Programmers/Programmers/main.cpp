@@ -119,11 +119,40 @@ int solution(vector<int> numbers, int k) {
 	return answer;
 }
 
+// *** 영어가 싫어요 ***
+//영어가 싫은 머쓱이는 영어로 표기되어있는 숫자를 수로 바꾸려고 합니다.
+//문자열 numbers가 매개변수로 주어질 때, numbers를 정수로 바꿔 return 하도록 solution 함수를 완성해 주세요.
+long long solution(string numbers) {
+	// 영어 숫자 배열 생성 ( 비교용 ) 
+	vector<string> v = { "zero","one","two","three","four","five","six","seven","eight","nine" };
+	long long answer = 0;
+
+	// numbers의 문자열이 없어질때 까지 반복
+	while (numbers.length() > 0)
+	{
+		for (int i = 0; i < v.size(); i++)
+		{
+			// 반복문을 통해 숫자 검열
+			if (numbers.substr(0, v[i].length()) == v[i])
+			{
+				// 10씩 곱해가며 자릿수 늘리기
+				answer = answer * 10 + i;
+
+				// 숫자를 찾았다면 찾은 문자열의 수만큼 잘라 numbers에 저장
+				numbers = numbers.substr(v[i].length());
+			}
+		}
+	}
+	
+	return answer;
+}
 
 void main()
 {
-	vector<int> array = { 1, 2, 3 };
+	/*vector<int> array = { 1, 2, 3 };
 	solution(array,3);
+	*/
 
+	solution("onefourzerosixseven");
 	return;
 }
