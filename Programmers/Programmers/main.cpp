@@ -122,37 +122,71 @@ int solution(vector<int> numbers, int k) {
 // *** 영어가 싫어요 ***
 //영어가 싫은 머쓱이는 영어로 표기되어있는 숫자를 수로 바꾸려고 합니다.
 //문자열 numbers가 매개변수로 주어질 때, numbers를 정수로 바꿔 return 하도록 solution 함수를 완성해 주세요.
-long long solution(string numbers) {
-	// 영어 숫자 배열 생성 ( 비교용 ) 
-	vector<string> v = { "zero","one","two","three","four","five","six","seven","eight","nine" };
-	long long answer = 0;
+//long long solution(string numbers) {
+//	// 영어 숫자 배열 생성 ( 비교용 ) 
+//	vector<string> v = { "zero","one","two","three","four","five","six","seven","eight","nine" };
+//	long long answer = 0;
+//
+//	// numbers의 문자열이 없어질때 까지 반복
+//	while (numbers.length() > 0)
+//	{
+//		for (int i = 0; i < v.size(); i++)
+//		{
+//			// 반복문을 통해 숫자 검열
+//			if (numbers.substr(0, v[i].length()) == v[i])
+//			{
+//				// 10씩 곱해가며 자릿수 늘리기
+//				answer = answer * 10 + i;
+//
+//				// 숫자를 찾았다면 찾은 문자열의 수만큼 잘라 numbers에 저장
+//				numbers = numbers.substr(v[i].length());
+//			}
+//		}
+//	}
+//	
+//	return answer;
+//}
 
-	// numbers의 문자열이 없어질때 까지 반복
-	while (numbers.length() > 0)
+//컨트롤 제트
+//숫자와 "Z"가 공백으로 구분되어 담긴 문자열이 주어집니다.문자열에 있는 숫자를 차례대로 더하려고 합니다.
+//이 때 "Z"가 나오면 바로 전에 더했던 숫자를 뺀다는 뜻입니다.숫자와 "Z"로 이루어진 문자열 s가 주어질 때, 머쓱이가 구한 값을 return 하도록 solution 함수를 완성해보세요.
+int solution(string s) {
+	int answer = 0;
+	int num = 0;
+
+	istringstream iss(s);		// istringstram은 공백을 구분자로 문자열을 추출
+	vector<string> v;
+	string str;
+
+	// 문자열을 배열에 넣기
+	while (iss >> str)
 	{
-		for (int i = 0; i < v.size(); i++)
-		{
-			// 반복문을 통해 숫자 검열
-			if (numbers.substr(0, v[i].length()) == v[i])
-			{
-				// 10씩 곱해가며 자릿수 늘리기
-				answer = answer * 10 + i;
+		v.push_back(str);
+	}
 
-				// 숫자를 찾았다면 찾은 문자열의 수만큼 잘라 numbers에 저장
-				numbers = numbers.substr(v[i].length());
-			}
+	for (auto c : v)
+	{
+		// Z가 나오기전까지 숫자들을 합한다.
+		if (c != "Z")
+		{
+			answer += stoi(c);
+			num = stoi(c);
+		}
+		// Z가 나오면 이전에 합한 수를 뺀다.
+		else
+		{
+			answer -= num;
 		}
 	}
-	
+
 	return answer;
 }
-
 void main()
 {
 	/*vector<int> array = { 1, 2, 3 };
 	solution(array,3);
 	*/
 
-	solution("onefourzerosixseven");
+	solution("10 Z 20 Z");
 	return;
 }
