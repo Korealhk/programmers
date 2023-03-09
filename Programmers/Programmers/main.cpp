@@ -90,12 +90,50 @@ int solution(int balls, int share) {
 int solution(vector<int> sides) {
 	int answer = 0;
 	
+	// 변의 길이로 변 정렬.
 	if (sides[0] > sides[1])
 	{
 		swap(sides[0], sides[1]);
 	}
 
+
 	answer = sides[0] + (sides[0] - 1);
+
+	return answer;
+}
+
+// *** 외계어 사전 ***
+//PROGRAMMERS - 962 행성에 불시착한 우주비행사 머쓱이는 외계행성의 언어를 공부하려고 합니다.
+//알파벳이 담긴 배열 spell과 외계어 사전 dic이 매개변수로 주어집니다.
+//spell에 담긴 알파벳을 한번씩만 모두 사용한 단어가 dic에 존재한다면 1, 존재하지 않는다면 2를 return하도록 solution 함수를 완성해주세요.외계어 사전
+int solution(vector<string> spell, vector<string> dic) {
+	int answer = 2;
+	bool check = false;
+
+	string str = "";
+	vector<string> v;
+
+	for (int i = 0; i < spell.size(); i++)
+	{
+		str += spell[i];
+	}
+
+	sort(str.begin(), str.end());
+
+	do {
+		v.push_back(str);
+	} while (next_permutation(str.begin(), str.end()));
+
+	for (int i = 0; i < v.size(); i++)
+	{
+		for (int j = 0; j < dic.size(); j++)
+		{
+			if (dic[j] == v[i])
+			{
+				answer = 1;
+			}
+		}
+	}
 
 	return answer;
 }
@@ -104,8 +142,9 @@ int solution(vector<int> sides) {
 
 void main()
 {
-	vector<int> array = {1,2};
+	vector<string> array = { "p", "o", "s" };
+	vector<string> str = { "sod", "eocd", "qixm", "adio", "soo","spo" };
 
-	cout << solution(array) << endl;
+	cout << solution(array, str) << endl;
 	return;
 }
