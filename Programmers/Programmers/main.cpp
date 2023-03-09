@@ -186,11 +186,16 @@ vector<int> solution(vector<string> keyinput, vector<int> board) {
 	return answer;
 }
 
+// *** 종이 자르기 ***
+//정수 M, N이 매개변수로 주어질 때, M x N 크기의 종이를 최소로 가위질 해야하는 횟수를 return 하도록 solution 함수를 완성해보세요.
+int solution(int M, int N) {
+	int answer = (M - 1) + ((N - 1) * M);
+
+	return answer;
+}
+
 void main()
 {
-	vector<string> array = {"left","right","up","down","down"};
-	vector<int> str = { 5,7 };
-
-	solution(array, str);
+	solution(4,6);
 	return;
 }
